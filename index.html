@@ -298,18 +298,29 @@
                 <div class="col-lg-6">
                     <!-- form fields -->
                     <form id="fcf-form-id" class="fcf-form-class" action="https://formspree.io/f/xjvdvevl" method="POST">
-                        <input type="text" class="form-control form-control-lg" placeholder="Name">
-                        <input type="email" class="form-control mt-3" placeholder="Email">
-                        <input type="text" class="form-control mt-3" placeholder="Subject">
+                        <input type="text" class="form-control form-control-lg" placeholder="Name" name="name">
+                        <input type="email" class="form-control mt-3" placeholder="Email" name="email">
+                        <input type="text" class="form-control mt-3" placeholder="Subject" name="subject">
                         <div class="mb-3 mt-3">
-                            <textarea class="form-control" rows="5" id="comment" name="text" placeholder="Project Details"></textarea>
+                            <textarea class="form-control" rows="5" id="comment" name="message" placeholder="Project Details"></textarea>
                         </div>
                     </form>
                     <button type="button" class="btn btn-success mt-3">Contact Me</button>
                     
                 </div>
 
-                <a href="form.html">Visit W3Schools.com!</a>
+                <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/xjvdvevl" method="post">
+                    <fieldset id="fs-frm-inputs">
+                        <label for="full-name">Full Name</label>
+                        <input type="text" name="name" id="full-name" placeholder="First and Last" required="">
+                        <label for="email-address">Email Address</label>
+                        <input type="email" name="_replyto" id="email-address" placeholder="email@domain.tld" required="">
+                        <label for="message">Message</label>
+                        <textarea rows="5" name="message" id="message" placeholder="Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla nullam quis risus." required=""></textarea>
+                        <input type="hidden" name="_subject" id="email-subject" value="Contact Form Submission">
+                    </fieldset>
+                        <input type="submit" value="Submit">
+                </form>
 
             </div>
         </div>
