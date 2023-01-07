@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Martin Dieck</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- font awesome -->
+  <script src="https://kit.fontawesome.com/31149d48b0.js" crossorigin="anonymous"></script>
+  <!-- linking css file -->
+  <link rel="icon" href="images/icon.png">
+  <link rel="stylesheet" href="prism.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .card:hover .card-title {
+    color: #000000;
+    }
+  </style>
+</head>
+
+<body>
+    <nav>
+        <div class="topnav" id="myTopnav">
+            <a href="index.html#home" class="active">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#resume">Resume</a>
+            <a href="index.html#portfolio">Portfolio</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="javascript:void(0);" class="icon" onclick="navBar()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+    </nav>
+    
+     <!-- code section-->
+    <section id="textgame">
+    <div class="container mt-3">
+    <h1 class="text-center" style="margin-top: 8%;margin-bottom: 3%;">Inventory Management</h1>
+    <a href="programming.html" class="btn btn-success" style="width: 20%; margin-left: 40%; margin-bottom: 3%">Back</a>
+    <p> This inventory management system contains a matrix of all chemical recipes (codified for NDA purposes). With this information, and using JavaScript, production orders can be created that help manage the components used, the amount needed to create a certain batch of product, among others. The explanation for each spreadsheet tab can be found below:
+        <ul>
+            <li><strong>Administración:</strong> Used for top-level management purposes, especially to keep track of the phase in which production order is in and the essential information (product, amount, etc.). With the checkboxes, the manager can authorize the next phase to begin (production, shipping, etc.)</li><br>
+            <li><strong>Producción:</strong> Used to visualize order priority and, when selecting a specific order, to visualize the exact amount of ingredients needed to create and satisfy the final product needs. It utilizes the SORTN function with specific filters to only show those orders in production and to order them by priority level.</li><br>
+            <li><strong>Consumo Final:</strong> Displays all relevant consumption information, including total consumption numbers, consumption within a specific date range and the top/bottom 10 components used in total and in the set date range.</li><br>
+            <li><strong>Producción Final:</strong> Displays all relevant production information, including total production numbers, production within a specific date range and the top/bottom 10 products created in total and in the set date range.</li><br>
+            <li><strong>Base de Datos:</strong> Contains all the raw, historic production data, including every specific component needed to satisfy every order. Used mainly as the pool of information for the above tabs.</li><br>
+            <li><strong>Calc Individual:</strong> Mainly used for creating new production orders. The dark-blue cells show those that should be changed every time a new order is created. There is a conditional check that verifies no two orders may share order number as well as a display of product name and number for verification purposes. The button makes use of the Google Script attached below to add the production order to the database.</li><br>
+            <li><strong>Matriz Recetas:</strong> Contains the raw, codified recipes matrix with all the final products and the percentage of each component it requires for proper production.</li><br>
+            <li><strong>Glosario:</strong> A tab that contains all component/product names and units for decodification purposes.</li><br>
+            <li><strong>Cálculo:</strong> Used for calculating the numbers that the production orders utilize and display, mainly the specific, practical quantity for each component and the total waste-product expected.</li>
+        </ul>
+    </p>
+    <a href="https://docs.google.com/spreadsheets/d/1Nk8vo5wV7curXdVEulvP4czGu1r4dOwoIX_huix-tEo/edit?usp=sharing" class="btn btn-success" style="width: 20%; margin-left: 40%; margin-bottom: 3%" target="_blank">View project</a>
+    <h4 class="text-center" style="margin-top: 3%;">Macros (Google Scripts)</h4>
+    <pre style="margin-top: 3%" data-download-link>
+        <code class="language-js line-numbers">/** @OnlyCurrentDoc */
+        function agregarDatos() {
+          var spreadsheet = SpreadsheetApp.getActive();
+          spreadsheet.getRange('B14:N22').activate();
+          var bd = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Base de Datos');
+          var lastrow = bd.getLastRow();
+          bd.getRange(lastrow+1,1).activate();
+          spreadsheet.getRange('\'Calc Individual\'!B14:N22').copyTo(spreadsheet.getActiveRange(), SpreadsheetApp.CopyPasteType.PASTE_VALUES, false);
+          spreadsheet.getRange('\'Calc Individual\'!B14:N22').copyTo(spreadsheet.getActiveRange(), SpreadsheetApp.CopyPasteType.PASTE_FORMAT, false);
+          spreadsheet.getActiveSheet().getFilter().remove();
+          spreadsheet.getDataRange().createFilter();
+        };
+
+        function incrementar() {
+          SpreadsheetApp.getActiveSheet().getRange('E6').setValue(SpreadsheetApp.getActiveSheet().getRange('E6').getValue() + 1);
+        };</code>
+    </pre>
+    </div>
+    </section>
+
+     <!-- footer section-->
+    <footer id="footer">
+        <div class="container-fluid">
+            <!-- social media icons -->
+            <div class="social-icons mt-4">
+                <a href="mailto:dieckmartin00@gmail.com" target="_blank"><i class="fab fa fa-envelope"></i></a>
+                <a href="https://www.facebook.com/martin.di.3/" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/martindieck/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/martindieck/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- load javascript after loading all html content -->
+    <script src="script/script.js"></script>
+    <script src="script/prism.js"></script>
+</body>
+</html>

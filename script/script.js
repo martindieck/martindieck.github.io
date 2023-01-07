@@ -1,6 +1,6 @@
 //Script Document
 
-// add class navbarDark on navbar scroll
+/*/ add class navbarDark on navbar scroll
 const header = document.querySelector('.navbar');
 
 window.onscroll = function() {
@@ -11,4 +11,13 @@ window.onscroll = function() {
     else {
         header.classList.remove('navbarDark');
     }
+}*/
+
+function navBar() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
 }
