@@ -15,6 +15,14 @@
     background-position: 40%;
 }
 
+.bgimage3 {
+  height:100vh;
+  background: url('images/starwars.jpg');
+  background-size:cover;
+  position:relative;
+  background-position: 40%;
+}
+
 /* text css above hero image*/
 .hero_title {
     font-size: 4.5rem;
